@@ -1,30 +1,65 @@
 import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-import './App.css';
+import { Card, getCard } from './cards';
+import { Flex, Box } from '@rebass/grid';
+import styled from 'styled-components';
+
+export const StyledCard = styled(Flex)`
+  height: 80vh;
+  width: 80vh;
+`;
+
+export const ColorBox = styled(Box)`
+  height: 40vh;
+  width: 40vh;
+  margin: 20px;
+`;
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [card, setCard] = useState<Card>(getCard());
+
+  const drawCard = () => {
+    const newCard = getCard();
+
+    setCard(newCard);
+  };
+
+  const renderCard = (currentCard: Card) => {
+    const { count, color, symbol } = currentCard;
+
+    if (symbol) {
+      return (
+        <StyledCard>
+          <img src={card.symbol} />
+        </StyledCard>
+      );
+    }
+
+    if (count === 2) {
+      return (
+        <StyledCard>
+          <ColorBox style={{ backgroundColor: color }}>&nbsp;</ColorBox>
+          <ColorBox style={{ backgroundColor: color }}>&nbsp;</ColorBox>
+        </StyledCard>
+      );
+    }
+
+    return (
+      <StyledCard>
+        <ColorBox style={{ backgroundColor: color }}>&nbsp;</ColorBox>
+      </StyledCard>
+    );
+  };
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
+    <>
+      <h1>Candyland Roller</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+        <button onClick={drawCard}>
+          {renderCard(card)}
+          card is {card.color} - {card.count} - {card.symbol}
+        </button>
       </div>
-      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
-    </div>
+    </>
   );
 }
 
