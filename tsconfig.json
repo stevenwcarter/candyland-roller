@@ -1,0 +1,68 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "module": "esnext",
+    "target": "ESNext",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "types": [
+      "vite/client",
+      "jest",
+      "vite-plugin-svgr/client"
+    ],
+    "allowJs": false,
+    "jsx": "react-jsx",
+    "importHelpers": true,
+    "keyofStringsOnly": true,
+    "moduleResolution": "node",
+    "rootDir": "src",
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": false,
+    "strictNullChecks": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "noUnusedLocals": true,
+    "plugins": [
+      {
+        "name": "typescript-styled-plugin"
+      },
+      {
+        "transform": "typescript-plugin-styled-components",
+        "type": "config",
+        // other typescript-plugin-styled-components options can be added here
+        "minify": true,
+        "ssr": false
+      }
+    ],
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "typeRoots": [
+      "node_modules/@types",
+      "src/@dndtypes"
+    ],
+    "noEmit": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "exclude": [
+    "node_modules",
+    "build",
+    "scripts",
+    "acceptance-tests",
+    "webpack",
+    "jest",
+    "src/setupTests.ts",
+    "src/service-worker.ts",
+    "src/serviceWorkerRegistration.ts"
+  ],
+  "include": [
+    "src"
+  ]
+}
