@@ -25,8 +25,8 @@ export const StyledCard = styled(Flex)`
   justify-content: space-around;
   flex-direction: column;
   align-items: center;
-  height: 80vh;
-  width: 80vw;
+  height: 60vh;
+  width: 90vw;
 `;
 
 export const Symbol = styled.img`
