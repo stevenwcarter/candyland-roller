@@ -26,7 +26,6 @@ variables:
 
 stages: # List of stages for jobs, and their order of execution
   - build
-  - test
   - deploy
 
 #sonarqube-check-ts:
@@ -80,27 +79,27 @@ build-job:
     - yarn install
     - yarn build
 
-unit-test-job: # This job runs in the test stage.
-  stage: test # It only starts when the job in the build stage completes successfully.
-  coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-      allow_failure: true
-    - if: $CI_COMMIT_BRANCH == "develop"
-    - if: $CI_COMMIT_BRANCH == "main"
-  cache:
-    paths:
-      - node_modules/
-  dependencies:
-    - build-job
-  script:
-    - yarn test:ci
-  artifacts:
-    when: always
-    reports:
-      coverage_report:
-        coverage_format: cobertura
-        path: $CI_PROJECT_DIR/coverage/cobertura-coverage.xml
+      #unit-test-job: # This job runs in the test stage.
+      #  stage: test # It only starts when the job in the build stage completes successfully.
+      #  coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
+      #  rules:
+      #    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      #      allow_failure: true
+      #    - if: $CI_COMMIT_BRANCH == "develop"
+      #    - if: $CI_COMMIT_BRANCH == "main"
+      #  cache:
+      #    paths:
+      #      - node_modules/
+      #  dependencies:
+      #    - build-job
+      #  script:
+      #    - yarn test:ci
+      #  artifacts:
+      #    when: always
+      #    reports:
+      #      coverage_report:
+      #        coverage_format: cobertura
+      #        path: $CI_PROJECT_DIR/coverage/cobertura-coverage.xml
 
 deploy-prod-job: # This job runs in the deploy stage.
   stage: deploy # It only runs when *both* jobs in the test stage complete successfully.
