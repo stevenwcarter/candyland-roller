@@ -9,7 +9,7 @@ export const StyledTitle = styled.h1`
 
 export const GameContainer = styled(Flex)`
   flex-direction: column;
-  height: 90vh;
+  height: 80vh;
 `;
 
 export const NewGameButton = styled.button`
@@ -21,7 +21,8 @@ export const StyledButton = styled.button`
   background-color: #c89ba2;
   aspect-ratio: 1 / 2;
   display: flex;
-  flex: 3 2 auto;
+  flex: 1 1 auto;
+  max-height: 100%;
 `;
 
 export const StyledCard = styled(Flex)`
@@ -33,7 +34,8 @@ export const StyledCard = styled(Flex)`
 `;
 
 export const Symbol = styled.img`
-  height: 100%;
+  max-height: 100%;
+  max-width: 100%;
 `;
 
 export const ColorBox = styled(Box)`
@@ -61,37 +63,29 @@ function App() {
     const { count, color, symbol } = currentCard;
 
     if (symbol) {
-      return (
-        <StyledCard>
-          <Symbol src={`${card.symbol}.jpg`} />
-        </StyledCard>
-      );
+      return <Symbol src={`${card.symbol}.jpg`} />;
     }
 
     if (count === 2) {
       return (
-        <StyledCard>
+        <>
           <ColorBox style={{ backgroundColor: color }}>&nbsp;</ColorBox>
           <ColorBox style={{ backgroundColor: color }}>&nbsp;</ColorBox>
-        </StyledCard>
+        </>
       );
     }
 
-    return (
-      <StyledCard>
-        <ColorBox style={{ backgroundColor: color }}>&nbsp;</ColorBox>
-      </StyledCard>
-    );
+    return <ColorBox style={{ backgroundColor: color }}>&nbsp;</ColorBox>;
   };
 
   return (
-    <>
-      <GameContainer>
-        <StyledTitle>Candyland Roller</StyledTitle>
-        <NewGameButton onClick={shuffle}>New Game</NewGameButton>
-        <StyledButton onClick={drawCard}>{renderCard(card)}</StyledButton>
-      </GameContainer>
-    </>
+    <GameContainer>
+      <StyledTitle>Candyland Roller</StyledTitle>
+      <NewGameButton onClick={shuffle}>New Game</NewGameButton>
+      <StyledButton onClick={drawCard}>
+        <StyledCard>{renderCard(card)}</StyledCard>
+      </StyledButton>
+    </GameContainer>
   );
 }
 
