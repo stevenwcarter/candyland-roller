@@ -19,10 +19,9 @@ export const NewGameButton = styled.button`
 export const StyledButton = styled.button`
   margin: auto;
   background-color: #c89ba2;
-  aspect-ratio: 1 / 2;
   display: flex;
   flex: 1 1 auto;
-  max-height: 100%;
+  width: 100%;
 `;
 
 export const StyledCard = styled(Flex)`
@@ -39,7 +38,7 @@ export const Symbol = styled.img`
 `;
 
 export const ColorBox = styled(Box)`
-  height: 50%;
+  height: 40%;
   aspect-ratio: 1 / 1;
   margin: 20px;
 `;
