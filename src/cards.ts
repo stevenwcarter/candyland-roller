@@ -7,7 +7,7 @@ export interface Card {
 const colors = ['red', 'yellow', 'green', 'blue', 'purple', 'orange'];
 const symbols = ['lollipop', 'cone', 'peppermint', 'gumdrop', 'fudge'];
 
-const shuffleArray = (array: Card[]) => {
+const shuffleArray = <T>(array: T[]) => {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
 
