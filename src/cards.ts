@@ -39,6 +39,12 @@ export const initCards = (): Card[] => {
 
 let gameCards: Card[] = initCards();
 
+export const shuffle = () => {
+  gameCards = initCards();
+
+  return gameCards.pop() as Card;
+};
+
 export const getCard = (): Card => {
   if (gameCards.length === 0) {
     gameCards = initCards();

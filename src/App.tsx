@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Card, getCard } from './cards';
+import { Card, getCard, shuffle as cardShuffle } from './cards';
 import { Flex, Box } from '@rebass/grid';
 import styled from 'styled-components';
 
@@ -9,6 +9,10 @@ export const StyledTitle = styled.h1`
 
 export const Container = styled.div`
   margin: auto;
+`;
+
+export const NewGameButton = styled.button`
+  padding: 20px 30px 20px 30px;
 `;
 
 export const StyledButton = styled.button`
@@ -37,6 +41,12 @@ export const ColorBox = styled(Box)`
 
 function App() {
   const [card, setCard] = useState<Card>(getCard());
+
+  const shuffle = () => {
+    const newCard = cardShuffle();
+
+    setCard(newCard);
+  };
 
   const drawCard = () => {
     const newCard = getCard();
@@ -74,6 +84,7 @@ function App() {
   return (
     <>
       <StyledTitle>Candyland Roller</StyledTitle>
+      <NewGameButton onClick={shuffle}>New Game</NewGameButton>
       <Container>
         <StyledButton onClick={drawCard}>{renderCard(card)}</StyledButton>
       </Container>
