@@ -3,14 +3,35 @@ import { Card, getCard } from './cards';
 import { Flex, Box } from '@rebass/grid';
 import styled from 'styled-components';
 
+export const StyledTitle = styled.h1`
+  text-align: center;
+`;
+
+export const Container = styled.div`
+  margin: auto;
+`;
+
+export const StyledButton = styled.button`
+  margin: auto;
+  background-color: #c89ba2;
+`;
+
 export const StyledCard = styled(Flex)`
+  margin: auto;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
   height: 80vh;
-  width: 80vh;
+  width: 80vw;
+`;
+
+export const Symbol = styled.img`
+  height: 100%;
 `;
 
 export const ColorBox = styled(Box)`
-  height: 40vh;
-  width: 40vh;
+  height: 50%;
+  aspect-ratio: 1 / 1;
   margin: 20px;
 `;
 
@@ -29,7 +50,7 @@ function App() {
     if (symbol) {
       return (
         <StyledCard>
-          <img src={card.symbol} />
+          <Symbol src={`${card.symbol}.jpg`} />
         </StyledCard>
       );
     }
@@ -52,13 +73,10 @@ function App() {
 
   return (
     <>
-      <h1>Candyland Roller</h1>
-      <div className="card">
-        <button onClick={drawCard}>
-          {renderCard(card)}
-          card is {card.color} - {card.count} - {card.symbol}
-        </button>
-      </div>
+      <StyledTitle>Candyland Roller</StyledTitle>
+      <Container>
+        <StyledButton onClick={drawCard}>{renderCard(card)}</StyledButton>
+      </Container>
     </>
   );
 }
