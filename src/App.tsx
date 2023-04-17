@@ -7,8 +7,9 @@ export const StyledTitle = styled.h1`
   text-align: center;
 `;
 
-export const Container = styled.div`
-  margin: auto;
+export const GameContainer = styled(Flex)`
+  flex-direction: column;
+  height: 90vh;
 `;
 
 export const NewGameButton = styled.button`
@@ -18,6 +19,9 @@ export const NewGameButton = styled.button`
 export const StyledButton = styled.button`
   margin: auto;
   background-color: #c89ba2;
+  aspect-ratio: 1 / 2;
+  display: flex;
+  flex: 3 2 auto;
 `;
 
 export const StyledCard = styled(Flex)`
@@ -25,8 +29,7 @@ export const StyledCard = styled(Flex)`
   justify-content: space-around;
   flex-direction: column;
   align-items: center;
-  height: 60vh;
-  width: 90vw;
+  height: 100%;
 `;
 
 export const Symbol = styled.img`
@@ -83,11 +86,11 @@ function App() {
 
   return (
     <>
-      <StyledTitle>Candyland Roller</StyledTitle>
-      <NewGameButton onClick={shuffle}>New Game</NewGameButton>
-      <Container>
+      <GameContainer>
+        <StyledTitle>Candyland Roller</StyledTitle>
+        <NewGameButton onClick={shuffle}>New Game</NewGameButton>
         <StyledButton onClick={drawCard}>{renderCard(card)}</StyledButton>
-      </Container>
+      </GameContainer>
     </>
   );
 }
