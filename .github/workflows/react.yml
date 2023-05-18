@@ -32,8 +32,8 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-        cache: yarn
-        cache-dependency-path: yarn.lock
+            #cache: yarn
+            #cache-dependency-path: ./yarn.lock
     - name: Run install
       uses: borales/actions-yarn@v4
       with:
