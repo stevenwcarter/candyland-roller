@@ -25,8 +25,8 @@ const StyledButton = styled.button`
   width: 100%;
 `;
 
-function App() {
-  const [card, setCard] = useState<Card>(getCard());
+const App = () => {
+  const [card, setCard] = useState<Card>({} as Card);
 
   const shuffle = () => {
     setCard(cardShuffle());
@@ -45,6 +45,6 @@ function App() {
       </StyledButton>
     </GameContainer>
   );
-}
+};
 
 export default App;
